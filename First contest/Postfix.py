@@ -1,26 +1,31 @@
-str = input().split()
+# # В постфиксной записи (или обратной польской записи) операция записывается после двух операндов.
+#
+# Формат входных данных
+# В единственной строке записано выражение в постфиксной записи, содержащее цифры и операции +, −, ∗.
+# Числа и операции разделяются пробелами. В конце строки может быть произвольное количество пробелов.
+#
+# Формат выходных данных
+# Необходимо вывести значение записанного выражения.
 
-stek = []
-result = 0
+def postfix_record(postfix):
+    result = []
 
-for i in range(0, len(str)):
-    if str[i].isdigit:
-        stek.append(str[i])
-    if str[i] == "+":
-        result = int(stek[0]) + int(stek[1])
-        stek.clear()
-        stek.append(result)
-    if str[i] == "-":
-        result = int(stek[0]) - int(stek[1])
-        stek.clear()
-        stek.append(result)
-    if str[i] == "*":
-        result = int(stek[0]) * int(stek[1])
-        stek.clear()
-        stek.append(result)
-    if str[i] == "/":
-        result = int(stek[0]) / int(stek[1])
-        stek.clear()
-        stek.append(result)
+    for i in postfix:
+        if i.isdigit():
+            result.append(int(i))
+            continue
 
-print(stek)
+        y = result.pop()
+        x = result.pop()
+
+        if i == "+":
+            result.append(int(x) + int(y))
+        elif i == "-":
+            result.append(int(x) - int(y))
+        elif i == "*":
+            result.append(int(x) * int(y))
+
+    return result[0]
+
+string = input().split()
+print(postfix_record(string))
