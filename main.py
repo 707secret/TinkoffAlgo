@@ -1,22 +1,24 @@
-def counting_sort(arr):
-    count = []
-    result = []
+# В первой строке входных данный записано число N - количество запросов.
+# Следующие N строк содержат описание запросов в формате:
+# • + i − гоблин с номером i встаёт в конец очереди.
+# • * i − привилегированный гоблин с номером i встает в середину очереди.
+# • - − первый гоблин из очереди уходит к шаманам.
+# Формат выходных данных
+# Для каждого запроса типа - программа должна вывести номер гоблина, который должен зайти
+# к шаманам.
 
-    for i in range(0, 10):
-        count.append(0)
+stek = []
+num = int(input())
+k = 1
+i = input()
+while k < num:
+    if i.split()[0] == '+':
+        stek.append(i.split()[1])
+    if i.split()[0] == '-':
+        print(stek[0])
+        stek.pop(0)
+    if i.split()[0] == '*':
+        stek.insert(int(round(len(stek) / 2)), i.split()[1])
 
-    for i in range(len(arr)):
-        count[arr[i] - 1] += 1
-        print(i, ' ', count)
-
-    for i in range(len(count)):
-        result.append(count[i]*(i+1))
-        print(result)
-        # 1 2 1 4 arr[i]
-        # 0 1 2 3 i
-
-    return result
-
-arr = [int(x) for x in input().split()]
-
-print(counting_sort(arr))
+    i = input()
+    k += 1

@@ -9,9 +9,11 @@
 
 stek = []
 num = int(input())
-k = 0
+k = 1
 i = input()
 while k < num:
+    i = input()
+
     if i.split()[0] == '+':
         stek.append(i.split()[1])
     if i.split()[0] == '-':
@@ -19,7 +21,5 @@ while k < num:
         stek.pop(0)
     if i.split()[0] == '*':
         stek.insert(int(round(len(stek)/2)), i.split()[1])
-    i = input()
-    k += 1
-print('stek: ', stek)
 
+    k += 1
